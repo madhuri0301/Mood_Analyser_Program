@@ -37,5 +37,29 @@ namespace Mood_Analyser_Program
                 return "HAPPY";
             }
         }
+        /// <summary>
+        /// if there is any other mood it will return happy
+        /// if there is empty mood it will also return happy
+        /// beacuse mood should be null or empty
+        /// </summary>
+        /// <returns></returns>
+        public string AnalyseMoodLive()
+        {
+            try
+            {
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new MACustomException(MACustomException.ExceptionType.EMPTY_MESSAGE, "mood should not be empty");
+                }
+                if (this.message.Contains("sad"))
+                    return "SAD";
+                else
+                    return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
+                throw new MACustomException(MACustomException.ExceptionType.NULL_MESSAGE, "mood should not be null");
+            }
+        }
     }
 }
