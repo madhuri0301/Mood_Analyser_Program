@@ -8,8 +8,9 @@ namespace Mood_Analyser_Program
     {
         //variable
         private string message;
+
         public MoodAnalyser(string message)
-        {
+        { 
             this.message = message;
         }
         /// <summary>
@@ -18,10 +19,16 @@ namespace Mood_Analyser_Program
         /// </summary>
         /// <param name="mesaage"></param>
         /// <returns></returns>
-        public string AnalyseMood(string mesaage)
+        public string AnalyseMood()
         {
             try
             {
+                if(this.message==null || message==string.Empty)
+                {
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY_MESSAGE);
+                }
+
+
                 if (this.message.Contains("sad"))
                 {
                     return "SAD";
@@ -31,8 +38,9 @@ namespace Mood_Analyser_Program
                     return "HAPPY";
                 }
             }
-            catch
+            catch(MoodAnalysisException ex)
             {
+                Console.WriteLine(ex.Message);
                 //Returning Happy when case of Null exception
                 return "HAPPY";
             }
@@ -43,23 +51,23 @@ namespace Mood_Analyser_Program
         /// beacuse mood should be null or empty
         /// </summary>
         /// <returns></returns>
-        public string AnalyseMoodLive()
-        {
-            try
-            {
-                if (this.message.Equals(string.Empty))
-                {
-                    throw new MACustomException(MACustomException.ExceptionType.EMPTY_MESSAGE, "mood should not be empty");
-                }
-                if (this.message.Contains("sad"))
-                    return "SAD";
-                else
-                    return "HAPPY";
-            }
-            catch (NullReferenceException)
-            {
-                throw new MACustomException(MACustomException.ExceptionType.NULL_MESSAGE, "mood should not be null");
-            }
-        }
+        //public string AnalyseMoodLive()
+        //{
+        //    try
+        //    {
+        //        if (this.message.Equals(string.Empty))
+        //        {
+        //            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY_MESSAGE, "mood should not be empty");
+        //        }
+        //        if (this.message.Contains("sad"))
+        //            return "SAD";
+        //        else
+        //            return "HAPPY";
+        //    }
+        //    catch (NullReferenceException)
+        //    {
+        //        throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MESSAGE, "mood should not be null");
+        //    }
+        //}
     }
 }

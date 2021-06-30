@@ -10,11 +10,16 @@ namespace Mood_Analyser_Program
 
             {
                 // Taking Input For Mood
-                Console.WriteLine("Enter message: ");
-                string message = Console.ReadLine(); 
-                MoodAnalyser checkmood = new MoodAnalyser(message);
-                string result = checkmood.AnalyseMood(message);
-                Console.WriteLine(result + " MOOD");
+                /* Console.WriteLine("Enter message: ");
+                 string message = Console.ReadLine(); 
+                 MoodAnalyser checkmood = new MoodAnalyser(message);
+                 string result = checkmood.AnalyseMood(message);
+                 Console.WriteLine(result + " MOOD");
+
+               // MoodAnalyserFactory.CreateMoodAnalyserObject("Mood_Analyser_Program.MoodAnalyser", "MoodAnalyser") */
+
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                factory.CreateMoodAnalyserObject();
             }
         }
     }
